@@ -3,6 +3,7 @@ resource "aws_spot_instance_request" "rabbitmq" {
   instance_type          = var.instance_type
   subnet_id              = local.app_subnets_ids[0]
   vpc_security_group_ids = [aws_security_group.allow_rabbitmq.id]
+  wait_for_fulfillment   = true
 
   tags = {
     Name = "${var.env}-rabbitmq"
