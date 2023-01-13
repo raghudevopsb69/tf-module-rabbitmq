@@ -4,3 +4,8 @@ data "aws_ami" "centos8" {
   owners      = ["973714476881"]
 }
 
+data "aws_route53_zone" "main" {
+  name         = var.domain
+  private_zone = false
+}
+
