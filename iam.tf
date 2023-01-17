@@ -16,7 +16,7 @@ resource "aws_iam_policy" "ssm-policy" {
           "ssm:GetParameter"
         ],
         "Resource" : [
-          "arn:aws:ssm:us-east-1:739561048503:parameter/param.dev*",
+          "arn:aws:ssm:us-east-1:739561048503:parameter/param.${var.env}*",
           "arn:aws:ssm:us-east-1:739561048503:parameter/param.NEXUS*"
         ]
       },
