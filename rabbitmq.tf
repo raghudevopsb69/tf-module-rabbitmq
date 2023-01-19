@@ -10,11 +10,9 @@ resource "aws_spot_instance_request" "rabbitmq" {
     Name = "${var.env}-rabbitmq"
   }
 
-  user_data = <<EOF
-#!/bin/bash
-labauto ansible
-ansible-pull -i localhost, -U https://github.com/raghudevopsb69/roboshop-ansible roboshop.yml -e ROLE_NAME=rabbitmq -e ENV=${var.env}
-EOF
+  user_data = base64encode(templatefile("${path.module}/ansible-pull.sh", {
+    env = var.env
+  }))
 }
 
 resource "aws_ec2_tag" "name-tag" {
